@@ -1,18 +1,29 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="css/style.css">
-    </head>
-    <body id="body">
-        <h1></h1>
-        <h2></h2>
-        <img src = "images/hangman0.png" id = "hangman">
-        <hr>
 
+<head>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
 
-        <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-firestore.js"></script>
-        <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
-        <script src="js/script.js"></script>
-    </body>
+<body id="body">
+    <h1></h1>
+    <h2></h2>
+
+    <div id=hangman>
+        <img src="images/hangman0.png" id="hangman">
+    </div>
+    
+    <div id="word"></div>
+
+    <hr>
+
+    <div id="buttons"></div>
+
+    <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.10.0/firebase-firestore.js"></script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+    <script src="js/firebase-hangman.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
 </html>
