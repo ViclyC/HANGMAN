@@ -25,26 +25,32 @@
   let message = document.querySelector("h1");
   let isOpen = [];
   let testArr = [];
-   let random = Math.floor(Math.random()*5);
+   let random = Math.floor(Math.random()*MAX);
+   
+   db.collection("trying").doc("2").get().then((snap) => {
+    for (let i = 0; i < MAX; i++){
+    let wordName = snap.data().Name[i]
+    localStorage.setItem(i, wordName);
+    
+   //word = snap.data().Name[0];
+
+    }
+});
+
+
+
+console.log(random);
+let choice = localStorage.getItem(random);
+console.log(choice);
+word = choice;
+
+
+
+
    
    
    document.querySelector("#hangman").style.height = "500px";
 
-  function testFire(){
-
-    db.collection("trying").doc("2").get().then((snap) => {
-        console.log(snap.data().Name[0]);
-        
-        
-       //word = snap.data().Name[0];
-
-
-    });
-    console.log(fireArr[0]);
-}
-  
-
-testFire();
 
 
 
