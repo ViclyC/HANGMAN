@@ -3,8 +3,9 @@ body {
     text-align: center;
 }
 
-#words{
-    text-align: center;
+#word{
+    
+    display: inline-flex;
 }
 
 #buttons{

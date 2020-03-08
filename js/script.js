@@ -13,6 +13,7 @@
   let isOpen = [];
   let testArr = [];
   let random = Math.floor(Math.random() * MAX);
+  let divArr = [];
 
   db.collection("trying").doc("2").get().then((snap) => {
       for (let i = 0; i < MAX; i++) {
@@ -30,7 +31,7 @@
   console.log(choice);
   word = choice;
 
-  document.querySelector("#hangman").style.height = "500px";
+  document.querySelector("#hangman").style.height = "400px";
 
   message.innerHTML = "HANGMAN";
   message.style.color = "red";
@@ -73,20 +74,30 @@
       blankArr[i] = document.createElement("p");
       blankArr[i].innerHTML = word.charAt(i);
       blankArr[i].style.color = "blue";
-      blankArr[i].style.position = "absolute";
-      blankArr[i].style.top = "300px";
-      blankArr[i].style.left = 700 + 50*i + "px";
-      blankArr[i].style.fontSize = "50px";
+      blankArr[i].style.zIndex = "1";
+
       blankArr[i].style.visibility = "hidden";
-      document.getElementById("word").appendChild(blankArr[i]);
+    //   document.getElementById("word").appendChild(blankArr[i]);
       blockArr[i] = document.createElement("img");
       blockArr[i].src = "images/question.png";
-      //blockArr[i].style.position = "absolute";
-      //blockArr[i].style.top = "350px";
-      //blockArr[i].style.left = 700 + 50*i + "px";
-      blockArr[i].style.height = "100px";
-      blockArr[i].style.width = "100px";
-      document.getElementById("word").appendChild(blockArr[i]);
+
+      blockArr[i].style.height = "70px";
+      blockArr[i].style.width = "50px";
+      blockArr[i].style.zIndex = "2";
+    //   document.getElementById("word").appendChild(blockArr[i]);
+
+    divArr[i] = document.createElement("div");
+    divArr[i].appendChild(blankArr[i]);
+    divArr[i].appendChild(blockArr[i]);
+    // blankArr[i].style.position = "fixed";
+    // blankArr[i].style.top = "0px";
+    // blankArr[i].style.left =  50*i + "px";
+    blankArr[i].style.fontSize = "70px";
+
+    // blockArr[i].style.position = "fixed";
+    // blockArr[i].style.top = "0px";
+    // blockArr[i].style.left = 50*i + "px";
+    document.getElementById("word").appendChild(divArr[i]);
       isOpen[i] = false;
   }
 
