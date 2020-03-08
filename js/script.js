@@ -7,14 +7,14 @@
   let word = wordArr[ran];
   let atozArr = [];
   let blankArr = [];
-  let blockArr = [];
-  let fireArr = [];
+//   let blockArr = [];
+//   let fireArr = [];
   let message = document.querySelector("h1");
   let isOpen = [];
   let testArr = [];
   let random = Math.floor(Math.random() * MAX);
   let divArr = [];
-
+// Getting the words from firebase.
   db.collection("trying").doc("2").get().then((snap) => {
       for (let i = 0; i < MAX; i++) {
           let wordName = snap.data().Name[i]
@@ -47,6 +47,8 @@
   console.log(max_buttons_row);
   console.log(max_rows);
 
+
+  //Making the buttons and putting them into rows depending on screen width.
   for (let row = 0; row < max_rows; row++) {
 
       for (let i = 0; i < max_buttons_row; i++) {
@@ -69,26 +71,27 @@
       }
   }
 
+  // Creating the word as a series of "?" first.
   let leng = word.length;
   for (let i = 0; i < leng; i++){
       blankArr[i] = document.createElement("p");
-      blankArr[i].innerHTML = word.charAt(i);
+      blankArr[i].innerHTML = "?";
       blankArr[i].style.color = "blue";
       blankArr[i].style.zIndex = "1";
 
-      blankArr[i].style.visibility = "hidden";
+    //   blankArr[i].style.visibility = "hidden";
     //   document.getElementById("word").appendChild(blankArr[i]);
-      blockArr[i] = document.createElement("img");
-      blockArr[i].src = "images/question.png";
+    //   blockArr[i] = document.createElement("img");
+    //   blockArr[i].src = "images/question.png";
 
-      blockArr[i].style.height = "70px";
-      blockArr[i].style.width = "50px";
-      blockArr[i].style.zIndex = "2";
+    //   blockArr[i].style.height = "70px";
+    //   blockArr[i].style.width = "50px";
+    //   blockArr[i].style.zIndex = "2";
     //   document.getElementById("word").appendChild(blockArr[i]);
 
-    divArr[i] = document.createElement("div");
-    divArr[i].appendChild(blankArr[i]);
-    divArr[i].appendChild(blockArr[i]);
+    // divArr[i] = document.createElement("div");
+    // divArr[i].appendChild(blankArr[i]);
+    // divArr[i].appendChild(blockArr[i]);
     // blankArr[i].style.position = "fixed";
     // blankArr[i].style.top = "0px";
     // blankArr[i].style.left =  50*i + "px";
@@ -97,12 +100,14 @@
     // blockArr[i].style.position = "fixed";
     // blockArr[i].style.top = "0px";
     // blockArr[i].style.left = 50*i + "px";
-    document.getElementById("word").appendChild(divArr[i]);
+    document.getElementById("word").appendChild(blankArr[i]);
       isOpen[i] = false;
   }
 
   console.log(word);
   let error = 0;
+
+//When a button is clicked, check if the word contains the letter on the button.
 
   function check(i) {
       atozArr[i].disabled = true;
@@ -111,10 +116,11 @@
 
       if (word.includes(letter)) {
           for (let j = 0; j < leng; j++) {
-              if (blankArr[j].innerHTML == letter) {
+              if (word.charAt(j) == letter) {
+                blankArr[j].innerHTML = word.charAt(j);
 
-                  blankArr[j].style.visibility = "visible";
-                  blockArr[j].style.visibility = "hidden";
+                //   blankArr[j].style.visibility = "visible";
+                //   blockArr[j].style.visibility = "hidden";
                   isOpen[j] = true;
               }
           }
@@ -142,8 +148,8 @@
 
 
 
-                  blankArr[j].style.visibility = "visible";
-                  blockArr[j].style.visibility = "hidden";
+                  blankArr[j].innerHTML = word.charAt(j);
+                //   blockArr[j].style.visibility = "hidden";
 
 
               }
@@ -158,4 +164,4 @@
 
   }
 
-  console.log(isOpen);
+
