@@ -1,6 +1,39 @@
+const MAX_USERS = 10;
+
+new Promise(function (resolve, reject) {
+    let users = getUsers();
+    sortScores();
+    setTimeout(() => resolve(users), 2000);
+
+}).then(function (users) {
+    setWorkout(users);
+
+});
+
+function getUsers() {
+    let name = [];
+    db.collection("users").get().then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
+            name.push(doc.data().name);
+        })
+    })
+    return name;
+}
+
+function setLeaderboard(users) {
+    console.log(users);
+    for (let i = 0; i < MAX_USERS; i++) {
+
+        document.getElementById("leadboardNum" + (i + 1)).innerHTML =
+            (i + 1) + " - " + users[i] + ": " + scores[i];
+
+    }
+
+}
+
 function sortScores() {
     //Sorts the scores
-    let f = db.collection("leaderboard").orderBy("score");
+    let f = db.collection("users").orderBy("score");
 }
 
 function writeScore(userName, userScore) {
